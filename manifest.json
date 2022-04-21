@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Reddit Filter",
+    "version": "1.0.0",
+    "description": "Filter out reddit posts based on keywords",
+    "icons": {
+        "16": "Logo.png",
+        "48": "Logo.png",
+        "128": "Logo.png"
+    },
+    "action": {
+        "default_icon": "Logo.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": ["scripting", "tabs", "activeTab"]
+}
