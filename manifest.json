@@ -4,13 +4,18 @@
     "version": "1.0.0",
     "description": "Filter out reddit posts based on keywords",
     "icons": {
-        "16": "Logo.png",
-        "48": "Logo.png",
-        "128": "Logo.png"
+        "16": "Logo.png"
     },
+    "content_scripts": [
+        {
+            "matches": ["https://*.reddit.com/*"],
+            "js": ["content.js"]
+        }
+    ],
     "action": {
         "default_icon": "Logo.png",
-        "default_popup": "popup.html"
+        "default_popup": "popup.html",
+        "default_title": "Filter Word"
     },
     "permissions": ["scripting", "tabs", "activeTab"]
 }

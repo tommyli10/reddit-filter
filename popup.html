@@ -8,25 +8,27 @@
     <title>Reddit Filter Words</title>
     <style>
         html body {
-            width: 180px;
-            height: 300px;
+            width: 200px;
+            height: 150px;
+        }
+
+        button {
+            margin-top: 10px;
         }
     </style>
 </head>
 
 <body>
-    <h1 id="test">Popup Filter</h1>
+    <h1>Popup Filter</h1>
 
-    <input type="text" placeholder="enter keyword">
-
-    <h3>Keywords</h3>
-    <ul class="keywords">
-    </ul>
-
-    <button>Press me</button>
+    <h3>Enter your keyword</h3>
+    <form id="form">
+        <input type="text" id="inputtext" placeholder="enter keyword">
+    </form>
+    <button id="send">Submit</button>
 
     <!-- <script src="Content.js"></script> -->
-    <script src="Content.js"></script>
+    <script src="popup.js"></script>
 </body>
 
 </html>
