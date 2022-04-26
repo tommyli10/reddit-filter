@@ -7,7 +7,7 @@ function gotMessage(message, sender, sendResponse) {
 
     let filter = message.txt.toLowerCase();
 
-    // selecting all reddit post, which are all under a div with the class name of '.rpBJOHq2PR60pnwJlUyP0'
+    // selecting all reddit post in the class of '.rpBJOHq2PR60pnwJlUyP0'
     const list = document.querySelector('.rpBJOHq2PR60pnwJlUyP0');
     const titles = list.getElementsByTagName('h3');
     const tags = list.getElementsByTagName('span');
