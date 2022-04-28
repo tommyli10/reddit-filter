@@ -2,7 +2,7 @@
 
 A chrome extension that filters out any words you choose that are in reddit post name or tag names.
 
-Installation instruction: download the repository zip file and unzip it into a folder on your desktop. Then in chrome go to 'chrome://extensions' and check 'developer mode' on top right of the page. Then click on 'Load unpacked' and select the folder in which you unzip the extension. 
+<b>Installation instruction</b>: download the repository zip file and unzip it into a folder on your desktop. Then in chrome go to 'chrome://extensions' and check 'developer mode' on top right of the page. Then click on 'Load unpacked' and select the folder in which you unzip the extension. 
 
 Example(getting rid of any post with 'rumour' in the tag name or post title):
 
