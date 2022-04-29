@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Reddit Filter",
-    "version": "1.0.0",
+    "version": "1.1",
     "description": "Filter out reddit posts based on keywords",
     "icons": {
         "16": "Logo.png"
