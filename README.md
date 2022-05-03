@@ -2,7 +2,9 @@
 
 A chrome extension that dynamically filters out any post that contains words you choose that are in reddit post titles or tag names. In other words, as new posts loads when you scroll, it continues to remove new posts that includes your filter words.
 
-Installation instruction: download the repository zip file and unzip it into a folder on your desktop. Then in chrome go to 'chrome://extensions' and check 'developer mode' on top right of the page. Then click on 'Load unpacked' and select the folder in which you unzip the extension. 
+<b>Installation instruction</b>: download the repository zip file and unzip it into a folder on your desktop. Then in chrome go to 'chrome://extensions' and check 'developer mode' on top right of the page. Then click on 'Load unpacked' and select the folder in which you unzip the extension. 
+
+Note: you might need to restart your browser and/or refresh the reddit page.
 
 Example(getting rid of any post with 'rumour' in the tag name or post title):
 
