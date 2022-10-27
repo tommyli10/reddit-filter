@@ -17,9 +17,13 @@ addForm.addEventListener('submit', function (e) {
 
 // send the input keyword to the content script
 function sendMessage() {
-    let params = {
+    const params = {
         active: true,
         currentWindow: true
+    }
+
+    const message = {
+        txt: userInput.value
     }
 
     // make sure only the active reddit page on the browser will be affected
@@ -27,9 +31,6 @@ function sendMessage() {
 
     // send the keyword to content script
     function gotTabs(tab) {
-        let message = {
-            txt: userInput.value
-        }
         chrome.tabs.sendMessage(tab[0].id, message);
     }
 }

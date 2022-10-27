@@ -1,24 +1,43 @@
 console.log("script running");
 
+window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('hello')
+});
 chrome.runtime.onMessage.addListener(gotMessage);
 
 // reddit put all the post in a class with this randomly generated class name
 // we put this class name in a variable so we can easily change it later if the name is updated
-let postClassName = '.rpBJOHq2PR60pnwJlUyP0';
+const postClassName = '.rpBJOHq2PR60pnwJlUyP0';
 
 // create a list of words for filtering
 let wordList = [];
 
 // selecting all reddit post in the class of '.rpBJOHq2PR60pnwJlUyP0'
-let list = document.querySelector(`${postClassName}`);
-let titles = list.getElementsByTagName('h3');
-let tags = list.getElementsByTagName('span');
+const list = document.querySelector(`${postClassName}`);
+const titles = list.getElementsByTagName('h3');
+const tags = list.getElementsByTagName('span');
 
 // receieve a message with the keyword input by the user
 function gotMessage(message) {
-    console.log(message.txt);
+    // console.log(message.txt);
 
-    let newWord = message.txt.toLowerCase();
+    const newWord = message.txt.toLowerCase();
+
+    // if the reddit filter storage is undefined or null
+    // we will initilize an array in local storage for reddit.com
+    let storage = localStorage.getItem('redditFilterWords');
+    if (!storage) {
+        localStorage.setItem('redditFilterWords', JSON.stringify([]));
+    }
+
+    storage = JSON.parse(localStorage.getItem('redditFilterWords'));
+    storage.push(newWord);
+    // save the new word to reddit.com's local storage
+    localStorage.setItem('redditFilterWords', JSON.stringify(storage));
+
+    // update this extension's wordlist with storage
+    wordList = storage;
+    // console.log(storage);
 
     // put the new keyword into the word list if it's not already in there
     if (!wordList.includes(newWord)) {
@@ -29,32 +48,25 @@ function gotMessage(message) {
     removePosts();
 }
 
+const checkPosts = (array) => {
+    array.forEach((post) => {
+        for (let i = 0; i < wordList.length; i++) {
+            let filter = wordList[i];
+            if (post.textContent.toLocaleLowerCase().includes(filter)) {
+                const parent = post.closest(`${postClassName} > div`);
+                parent.remove();
+            }
+        }
+    });
+};
+
 // removes posts tha contain any of the keywords
 function removePosts() {
     // if wordList is empty, we skip this iteration
     if (wordList.length == 0) return;
 
-    // get rid of all post with filter word in title
-    Array.from(titles).forEach(post => {
-        for (let i = 0; i < wordList.length; i++) {
-            let filter = wordList[i];
-            if (post.textContent.toLocaleLowerCase().includes(filter)) {
-                const parent = post.closest(`${postClassName} > div`);
-                parent.parentNode.removeChild(parent);
-            }
-        }
-    });
-
-    // get rid of all post with filter word in tags
-    Array.from(tags).forEach(tag => {
-        for (let j = 0; j < wordList.length; j++) {
-            let filter = wordList[j];
-            if (tag.textContent.toLocaleLowerCase().includes(filter)) {
-                const parent = tag.closest(`${postClassName} > div`);
-                parent.parentNode.removeChild(parent);
-            }
-        }
-    });
+    checkPosts(Array.from(titles));
+    checkPosts(Array.from(tags));
 }
 
 // when you scroll down on reddit, new posts might load, so we call removePosts whenever the page is scrolled

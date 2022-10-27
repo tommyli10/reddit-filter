@@ -17,5 +17,5 @@
         "default_popup": "popup.html",
         "default_title": "Filter Word"
     },
-    "permissions": ["scripting", "tabs"]
+    "permissions": ["scripting", "tabs", "storage"]
 }
